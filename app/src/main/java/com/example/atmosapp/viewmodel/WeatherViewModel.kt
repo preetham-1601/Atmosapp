@@ -1,17 +1,28 @@
 package com.example.atmosapp.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.atmosapp.models.WeatherResponse
 import com.example.atmosapp.repository.WeatherRepository
 import kotlinx.coroutines.launch
 
 class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() {
 
     private val apiKey = "63a996eb2c67b6f4a973987a3a77cbfd"
-    fun loadWeather(city: String, apiKey: String) {
+
+    private val _weatherData = MutableLiveData<WeatherResponse>()
+    val weatherData: LiveData<WeatherResponse> = _weatherData
+
+    fun loadWeather(city: String) {
         viewModelScope.launch {
-            val weatherData = repository.getCurrentWeather(city, apiKey)
-            // Update LiveData/State with weatherData
+            try {
+                val weatherResponse = repository.getCurrentWeather(city, apiKey)
+                _weatherData.postValue(weatherResponse)
+            } catch (e: Exception) {
+                // Handle the error appropriately
+            }
         }
     }
 }

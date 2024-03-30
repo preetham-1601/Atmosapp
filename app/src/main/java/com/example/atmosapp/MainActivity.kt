@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.atmosapp.i.WeatherApp
+import com.example.atmosapp.i.WeatherScreen
 import com.example.atmosapp.viewmodel.WeatherViewModel
 
 class MainActivity : ComponentActivity() {
@@ -15,7 +16,7 @@ class MainActivity : ComponentActivity() {
             MaterialTheme {
                 // Initialize ViewModel
                 val weatherViewModel: WeatherViewModel = viewModel()
-                WeatherApp(weatherViewModel)
+                WeatherScreen(weatherViewModel)
             }
         }
     }
