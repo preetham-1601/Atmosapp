@@ -1,5 +1,7 @@
 package com.example.atmosapp.viewmodel
 
+import android.util.Log
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,18 +12,16 @@ import kotlinx.coroutines.launch
 
 class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() {
 
+    var weatherData = mutableStateOf<WeatherResponse?>(null)
+
     private val apiKey = "63a996eb2c67b6f4a973987a3a77cbfd"
-
-    private val _weatherData = MutableLiveData<WeatherResponse>()
-    val weatherData: LiveData<WeatherResponse> = _weatherData
-
     fun loadWeather(city: String) {
         viewModelScope.launch {
             try {
-                val weatherResponse = repository.getCurrentWeather(city, apiKey)
-                _weatherData.postValue(weatherResponse)
+                val response = repository.getCurrentWeather(city, apiKey)
+                weatherData.value = response// Handle data (update LiveData or state)
             } catch (e: Exception) {
-                // Handle the error appropriately
+                e.printStackTrace()
             }
         }
     }
