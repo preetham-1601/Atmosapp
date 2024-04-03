@@ -5,13 +5,13 @@ This Weather App is an Android application developed using Kotlin and Jetpack Co
 
 ## Features
 - Fetch and display current weather data
-- Minimalistic UI with Jetpack Compose
+- UI with Jetpack Compose
 
 ## Setup and Installation
-1. Clone the repository:
+1. Clone the repository
 2. Open the project in Android Studio.
-3. Add your OpenWeather API key in `local.properties` as follows:
-4. Sync the project and run on an Android device or emulator.
+3. Add your OpenWeather API key
+4. Sync the project and run it on an Android device or emulator.
 
 ## Technologies Used
 - Kotlin
