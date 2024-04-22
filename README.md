@@ -1,4 +1,4 @@
-# Weather App
+# ATMOS App
 
 ## Overview
 This Weather App is an Android application developed using Kotlin and Jetpack Compose. It fetches weather data from the OpenWeather API and displays it in a user-friendly interface.
